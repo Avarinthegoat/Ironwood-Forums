@@ -74,34 +74,29 @@
 
         // 2. Global Canvas Environment Variables & FALLBACKS
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        
-        // Define a safe, non-functional default config as a fallback
-        const DEFAULT_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyDdbar8sQMCTR-wdHJ6rcruwGbnVRN-5Gs", 
-            authDomain: "amir-mehmood-f39d6.firebaseapp.com",
-            projectId: "amir-mehmood-f39d6",
-            storageBucket: "amir-mehmood-f39d6.firebasestorage.app",
-            messagingSenderId: "398717349128",
-            appId: "1:398717349128:web:e8dbcf08a2c5d9321990bd",
-        };
+       <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-        let firebaseConfig = DEFAULT_FIREBASE_CONFIG;
-        let configError = null;
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDdbar8sQMCTR-wdHJ6rcruwGbnVRN-5Gs",
+    authDomain: "amir-mehmood-f39d6.firebaseapp.com",
+    projectId: "",
+    storageBucket: "amir-mehmood-f39d6.firebasestorage.app",
+    messagingSenderId: "¡",
+    appId: "1:398717349128:web:e8dbcf08a2c5d9321990bd",
+    measurementId: "G-Z2LW8WY0QH"
+  };
 
-        try {
-            const envConfig = typeof __firebase_config !== 'undefined' ? __firebase_config : '{}';
-            const parsedConfig = JSON.parse(envConfig);
-
-            // Use the provided config if it has an API key, otherwise use the default
-            if (parsedConfig.apiKey) {
-                firebaseConfig = parsedConfig;
-            } else {
-                configError = "Environment config missing apiKey. Using dummy fallback.";
-            }
-
-        } catch (e) {
-            configError = `Failed to parse environment config: ${e.message}. Using dummy fallback.`;
-        }
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
         let db, auth;
         let currentUserId = null;
